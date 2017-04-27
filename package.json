@@ -1,0 +1,18 @@
+{
+  "name": "allinone",
+  "version": "0.0.1",
+  "description": "",
+  "main": "permissions-management.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Martin Nally",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "pg": "^6.0.3",
+    "response-helper-functions": "0.0.12"
+  }
+}

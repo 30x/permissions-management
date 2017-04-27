@@ -1,0 +1,7 @@
+node_modules
+permissions-management/node_modules
+permissions-maintenance/node_modules
+permissions-migration/node_modules
+permissions-audit/node_modules
+folders/node_modules
+teams/node_modules

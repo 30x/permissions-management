@@ -1,0 +1,63 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: permissions-management
+  labels:
+    name: permissions-management
+  namespace: apigee
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: permissions-management
+  template:
+    metadata:
+      labels:
+        component: permissions-management
+        routable: "true"
+      annotations:
+        privateHosts: sso.k8s.dev
+        privatePaths: 3000:/permissions 3000:/resources-shared-with 3000:/permissions-heirs 3000:/users-who-can-access
+                      3000:/teams 
+                      3000:/permissions-migration/migration-request 
+                      3000:/audits
+                      3000:/folders
+    spec:
+      containers:
+      - name: permissions-management
+        image: permissions-management
+        imagePullPolicy: IfNotPresent
+        ports:
+          - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: PG_HOST
+          valueFrom:
+            secretKeyRef:
+              name: permissions
+              key: pghost
+        - name: PG_USER
+          valueFrom:
+            secretKeyRef:
+              name: permissions
+              key: pguser
+        - name: PG_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: permissions
+              key: pgpassword
+        - name: PG_DATABASE
+          valueFrom:
+            secretKeyRef:
+              name: permissions
+              key: pgdatabase
+        - name: SHIPYARD_PRIVATE_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: routing
+              key: private-api-key
+        - name: INTERNAL_SY_ROUTER_HOST
+          value: internal_router
+        #- name: INTERNAL_SY_ROUTER_PORT
+        #  value: "30556"
