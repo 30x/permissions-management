@@ -13,6 +13,6 @@
   "license": "Apache-2.0",
   "dependencies": {
     "pg": "^6.0.3",
-    "response-helper-functions": "0.0.12"
+    "response-helper-functions": "0.0.16"
   }
 }
