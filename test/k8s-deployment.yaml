@@ -17,11 +17,14 @@ spec:
         routable: "true"
       annotations:
         privateHosts: sso.k8s.dev
-        privatePaths: 3000:/permissions 3000:/resources-shared-with 3000:/permissions-heirs 3000:/users-who-can-access
-                      3000:/teams 
-                      3000:/permissions-migration/migration-request 
-                      3000:/audits
-                      3000:/folders
+        privatePaths: 3000:/az-permissions 
+                      3000:/az-resources-shared-with 
+                      3000:/az-permissions-heirs 
+                      3000:/az-users-who-can-access
+                      3000:/az-teams 
+                      3000:/az-permissions-migration/migration-request 
+                      3000:/az-audits
+                      3000:/az-folders
     spec:
       containers:
       - name: permissions-management
